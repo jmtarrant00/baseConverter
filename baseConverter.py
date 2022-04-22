@@ -3,9 +3,6 @@
 #   another. User specifies the base of
 #   the input and output
 
-import math
-from operator import concat
-
 charList = {}
 file = open("characterList.txt")
 key = 0
@@ -20,36 +17,33 @@ outputBase = 2
 outputNumber = ""
 
 print('''This program is allows you to convert numbers from one base to another.
-The base must be between 2 and 61.''')
+>>The base must be between 2 and 61.''')
 
-# def inputs():
-#     inputBase = input("What is the base of the input? ")    
-#     inputNumber = input("What is the number to convert? ")
-#     outputBase = input("What is the base of the output? ")
-#     return inputBase, inputNumber, outputBase
+def inputs():
+    global inputBase, inputNumber, outputBase
+    inputBase = int(input("What is the base of the input? "))
+    inputNumber = int(input("What is the number to convert? "))
+    outputBase = int(input("What is the base of the output? "))
+
 
 def convert(inputBase, inputNumber, outputBase, outputNumber):
+    #Take input base and number and output base and number as variables
+    #  convert input number to decimal then convert that to the output base
+
+
     quotient = inputNumber
     remainder = 0
-    # print("Input Base", inputBase)
-    # print("Output Base", outputBase)
-    # print("Quotient", quotient)
-    if (inputBase > outputBase):
-        while quotient != 0:
-            remainder = quotient % outputBase
-            # print("Remainder ", remainder)
-            quotient = quotient // outputBase
-            # print("Quotient ", quotient)
-            outputNumber = str(remainder) + outputNumber
-        print(str(inputNumber) + " in base " + str(outputBase) + " is " + outputNumber)
-    # else:
-    #     print(outputNumber)
+    while quotient != 0:
+        remainder = quotient % outputBase
+        quotient = quotient // outputBase
+        outputNumber = charList[remainder] + outputNumber
+    # elif (inputBase < outputBase):
+        
+
+    print(str(inputNumber) + " in base " + str(outputBase) + " is " + outputNumber)
 
 
-# inputs()
-inputBase = int(input("What is the base of the input? "))
-inputNumber = int(input("What is the number to convert? "))
-outputBase = int(input("What is the base of the output? "))
+inputs()
 print("inputNumber ", inputNumber)
 if (int(inputBase) > 61 or int(inputBase) < 2):
     print("Please input a base between 2 and 50")
