@@ -3,7 +3,6 @@
 #   another. User specifies the base of
 #   the input and output
 
-from asyncio.windows_events import NULL
 import math
 from operator import concat
 
@@ -18,30 +17,42 @@ for line in file:
 inputBase = 10
 inputNumber = 0
 outputBase = 2
-outputNumber = None
+outputNumber = ""
 
-print('''This This program is allows you to convert numbers from one base to another.
-        the base must be between 2 and 61.''')
+print('''This program is allows you to convert numbers from one base to another.
+The base must be between 2 and 61.''')
 
-def inputs():
-    inputBase = input("What is the base of the input? ")    
-    inputNumber = input("What is the number to convert? ")
-    outputBase = input("What is the base of the output? ")
+# def inputs():
+#     inputBase = input("What is the base of the input? ")    
+#     inputNumber = input("What is the number to convert? ")
+#     outputBase = input("What is the base of the output? ")
+#     return inputBase, inputNumber, outputBase
 
-def convert(inputBase, inputNumber, outputBase):
+def convert(inputBase, inputNumber, outputBase, outputNumber):
     quotient = inputNumber
     remainder = 0
-    if inputBase < outputBase:
+    # print("Input Base", inputBase)
+    # print("Output Base", outputBase)
+    # print("Quotient", quotient)
+    if (inputBase > outputBase):
         while quotient != 0:
-            quotient = inputNumber // outputBase
-            remainder = inputNumber % outputBase
-            outputNumber = remainder + outputNumber
+            remainder = quotient % outputBase
+            # print("Remainder ", remainder)
+            quotient = quotient // outputBase
+            # print("Quotient ", quotient)
+            outputNumber = str(remainder) + outputNumber
+        print(str(inputNumber) + " in base " + str(outputBase) + " is " + outputNumber)
+    # else:
+    #     print(outputNumber)
 
 
-while True:
-    inputs()
-    if (inputBase > 61 or inputBase < 2):
-        print("Please input a base between 2 and 50")
-        continue
-    else:
-        convert(inputBase, inputNumber, outputBase)
+# inputs()
+inputBase = int(input("What is the base of the input? "))
+inputNumber = int(input("What is the number to convert? "))
+outputBase = int(input("What is the base of the output? "))
+print("inputNumber ", inputNumber)
+if (int(inputBase) > 61 or int(inputBase) < 2):
+    print("Please input a base between 2 and 50")
+    #continue
+else:
+    convert(inputBase, inputNumber, outputBase, outputNumber)
