@@ -26,7 +26,7 @@ def get_key(val):
 def inputs():
     global inputBase, inputNumber, outputBase
     inputBase = int(input("What is the base of the input? "))
-    inputNumber = int(input("What is the number to convert? "))
+    inputNumber = input("What is the number to convert? ")
     outputBase = int(input("What is the base of the output? "))
 
 
@@ -35,18 +35,25 @@ def convert(inputBase, inputNumber, outputBase, outputNumber):
     #  convert input number to decimal then convert that to the output base
     remainder = 0
     quotient = inputNumber
-    # inputLength = len(inputNumber)
-    # if inputBase != 10:
-    #     for x in inputLength:
-    #         inputDec = (charList.index())
-    # else:
-    #     quotient = inputNumber
-
-    while quotient != 0:
-        print("While Loop")
-        remainder = quotient % outputBase
-        quotient = quotient // outputBase
-        outputNumber = charList.get(remainder) + outputNumber
+    inputLength = len(inputNumber)
+    inputDec = 0
+    if inputBase != 10:
+        for x in range(inputLength-1, -1, -1):
+            print("x", x)
+            for y in inputNumber[::-1]:
+                print("y", y)
+                inputDec = inputDec + (get_key(y) + (pow(inputBase, x)))
+        print("InputDec:", inputDec)
+    else:
+        if outputBase == 10:
+            outputNumber = inputDec
+        else:
+            quotient = inputDec
+            while quotient != 0:
+                print("While Loop")
+                remainder = quotient % outputBase
+                quotient = quotient // outputBase
+                outputNumber = charList.get(remainder) + outputNumber
     # elif (inputBase < outputBase):
         
     print(str(inputNumber) + " in base " + str(outputBase) + " is " + outputNumber)
