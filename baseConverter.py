@@ -10,6 +10,7 @@ for line in file:
     charList[key] = line.rstrip()
     key += 1
 
+#set default values for variables
 inputBase = '10'
 inputNumber = 0
 outputBase = '2'
@@ -18,17 +19,20 @@ outputNumber = ""
 print('''This program is allows you to convert numbers from one base to another.
 >>The base must be between 2 and 61.''')
 
+# get the key using the value entered
 def get_key(val):
     for key, value in charList.items():
         if val == value:
             return key
 
+# get the values from the user
 def inputs():
     global inputBase, inputNumber, outputBase
     inputBase = int(input("What is the base of the input? ") or 10)
     inputNumber = str(input("What is the number to convert? ") or 0)
     outputBase = int(input("What is the base of the output? ") or 2)
 
+# Convert from base 10 to any other base
 def convertFrom10(quotient, outputBase):
     remainder = 0
     outputNumber = ""
@@ -40,9 +44,10 @@ def convertFrom10(quotient, outputBase):
     return outputNumber
     
 
+# Convert the number from input to outbut base
+#   Take input base and number and output base and number as variables
+#   convert input number to decimal then convert that to the output base
 def convert(inputBase, inputNumber, outputBase, outputNumber = '0'):
-    #Take input base and number and output base and number as variables
-    #  convert input number to decimal then convert that to the output base
     inputLength = len(inputNumber)
     inputDec = 0
     inputRev = inputNumber[::-1]
