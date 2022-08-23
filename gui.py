@@ -42,23 +42,26 @@ def get_key(val):
         if val == value:
             return key
 
-# get the values from the user
+# Get the values from the entry boxes on the UI, or set them to a default value
+#   if there isn't anything in the box
+#   Also checks the input and output bases to see if the user has entered 
+#   a valid value
 def inputs():
-    print("inputs function")
     global inputBase, inputNumber, outputBase, outputNumber
     inputBase = int(inputBaseEntry.get() or 10)
     inputNumber = str(inputNumberEntry.get() or 0)
     outputBase = int(outputBaseEntry.get() or 2)
 
-    # Check if the user input bases are withing the valid range
+    # Check if user input bases are within valid range
     if (int(inputBase) < 2 or int(inputBase) > 61):
         outputText = "Please input an input base between 2 and 61"
     elif (int(outputBase) < 2 or int(outputBase) > 61):
         outputText = "Please input an output base between 2 and 61"
-    else:
+    else: # if user input bases within range, convert inputNumber
         outputNumber = convert(inputBase, inputNumber, outputBase)
         outputText = str(inputNumber) + " in base " + str(outputBase) + " is " + outputNumber
 
+    # set the output number lable to the output text string
     outputNumberLabel.configure(text=outputText)
 
 # Convert from base 10 to any other base
@@ -66,7 +69,6 @@ def convertFrom10(quotient, outputBase):
     remainder = 0
     outputNumber = ""
     while quotient != 0:
-        # print("While Loop")
         remainder = quotient % outputBase
         quotient = quotient // outputBase
         outputNumber = charList.get(remainder) + outputNumber
@@ -76,11 +78,11 @@ def convertFrom10(quotient, outputBase):
 #   Take input base and number and output base and number as variables
 #   convert input number to decimal then convert that to the output base
 def convert(inputBase, inputNumber, outputBase):
-    print("Convert Function")
     global outputNumber
     inputLength = len(inputNumber)
     inputDec = 0
     inputRev = inputNumber[::-1]
+    # If the inputNumber isn't already in base 10, convert it to 
     if inputBase != 10:
         for x in range(inputLength-1, -1, -1):
             # print("x", x)
@@ -93,7 +95,7 @@ def convert(inputBase, inputNumber, outputBase):
     else:
         outputNumber = convertFrom10(int(inputNumber), outputBase)
 
-    print(str(inputNumber) + " base " + str(outputBase) + " is " + outputNumber)
+    # print(str(inputNumber) + " base " + str(outputBase) + " is " + outputNumber)
     return outputNumber    
 
 # info text
