@@ -131,7 +131,7 @@ outputNumberLabel.grid(column=0, row=5, columnspan=2)
 # Styling the window
 
 style = ttk.Style(root)
-style.configure('TLabel', font=('SegoeUI', 11), background="#0047AB")
+style.configure('TLabel', font=('SegoeUI', 11), background="#0047AB", foreground="#F0f0f0")
 style.configure('TButton', font=('SegoeUI', 11), background="#0047AB")
 
 
